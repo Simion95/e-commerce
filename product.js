@@ -1,3 +1,6 @@
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let productId = urlParams.get('id');
 let individualProductData = async (productId) => {
   
         let response = await fetch(`https://fakestoreapi.com/products/${productId}`);
@@ -21,6 +24,7 @@ let displayProductDetails = async (productId) => {
         let descriptionElement = document.createElement('p');
         descriptionElement.textContent = productData.description;
         descriptionElement.classList.add("product-card-description")
+        descriptionElement.style.marginBottom = "5px";
         
         let priceElement = document.createElement('p');
         priceElement.textContent = `Price: $${productData.price}`;
@@ -40,7 +44,7 @@ let displayProductDetails = async (productId) => {
     }
 };
 
-displayProductDetails(1);
+displayProductDetails(productId);
 
 
 let mainTitle = document.querySelector(".main-title");

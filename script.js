@@ -247,14 +247,9 @@ let sidebar = document.querySelector('.sidebar');
 let overlay = document.querySelector('.overlay');
 let productCardsContainer = document.querySelector('.product-cards-container');
 
-
-
-
-
 let searchBar = document.querySelector(".input-navbar-container");
 let searchIcon = document.querySelector(".search-icon");
 let mainTitle = document.querySelector(".main-title");
-
 
 let showSideBar = () => {
     sidebar.style.transform = "translateX(0px)";
@@ -291,6 +286,7 @@ let createProductCards = async () => {
 
         // aici am creat imaginea
         let cardImage = document.createElement('div');
+        cardImage.style.cursor = "pointer";
         cardImage.classList.add("product-card-image");
         cardImage.style.backgroundImage = `url('${data[i].image}')`;
 
@@ -301,6 +297,7 @@ let createProductCards = async () => {
 
         // aici am creat div-ul pentru continut
         let cardContent = document.createElement('div');
+        cardContent.style.cursor = "pointer";
         cardContent.classList.add("product-card-content");
         cardContent.innerHTML = `
             <h2 class="product-card-title"> ${data[i].title} </h2>
@@ -311,7 +308,12 @@ let createProductCards = async () => {
         let redirectToProductPage = (productId) => {
            location.href = `product.html?id=${productId}`;
         };
+
+
         cardContent.addEventListener("click", () => {
+            redirectToProductPage(data[i].id);
+        });
+        cardImage.addEventListener("click", () => {
             redirectToProductPage(data[i].id);
         });
 
