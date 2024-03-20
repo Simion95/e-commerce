@@ -331,10 +331,11 @@ let createProductCards = async () => {
             let productData = {
                 id: data[i].id,
                 title: data[i].title,
-                price: data[i].price
+                price: data[i].price,
+                image: data[i].image
             };
 
-            addToCart(productData, data);
+            addToCart(productData);
         });
 
 
@@ -355,7 +356,7 @@ createProductCards();
 let cartProducts = [];
 let cartProductsContainer = document.querySelector('.cart-products-container');
 
-let addToCart = (product, data) => {
+let addToCart = (product) => {
     let productIndex = cartProducts.findIndex((element) => element.id === product.id);
     if (productIndex === -1) {
         let productToBePushed = {
@@ -382,7 +383,7 @@ let addToCart = (product, data) => {
         let productData = document.createElement('div');
         let productImage = document.createElement('div');
         productImage.classList.add("product-cart-image");
-        productImage.style.backgroundImage = `url('${data[i].image}')`;
+        productImage.style.backgroundImage = `url('${cartProducts[i].image}')`;
       
 
         productData.innerHTML = `
@@ -456,8 +457,7 @@ let addToCart = (product, data) => {
         
         cartProductsContainer.appendChild(productSection);
 
-    }
-    
+    } 
 };
 
 
